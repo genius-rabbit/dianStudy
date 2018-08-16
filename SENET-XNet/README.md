@@ -12,6 +12,9 @@
 
 ![](./image/SENet-batch100-18-tensorboardX-small.png)
 
+- 未使用SENET对比图
+![](./image/ResNetCifar100.png)
+
 
 - 18层网络 log
     - batchSize = 64 最终结果
