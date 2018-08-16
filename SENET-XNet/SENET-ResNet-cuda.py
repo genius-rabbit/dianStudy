@@ -7,15 +7,13 @@ import torch.nn.functional as F
 import torchvision.transforms as transforms
 import torch.nn as nn
 import torch.utils.data.dataloader as Data
-import tensorflow as tf
+from tensorboardX import SummaryWriter
+writer = SummaryWriter('/output/log')
 
-useTensorboard = False
-
-logdir = '/output/'
 testStep = 500
 netSize = [2, 2, 2, 2]
 epochSize = 100
-batch_size = 128
+batch_size = 100
 root = './cifar'
 # root = '/home/geniusrabbit/PycharmProjects/TestPyTF/cifar100'
 
@@ -149,10 +147,6 @@ def test(model, test_loader, loss_func, use_cuda):
 
 
 def main():
-    # tensorboard
-    if useTensorboard:
-        # use tensorboard
-
     use_cuda = torch.cuda.is_available()
     train_loader = Data.DataLoader(
         torchvision.datasets.CIFAR100(root=root, train=True, download=True, transform=
@@ -195,17 +189,18 @@ def main():
             acc, loss = train(model, data, target, ce_loss, optimizer)
             if train_step % 100 == 0:
                 print('[Train]: Step: {}, Loss: {:.6f}, Accuracy: {:.6f}'.format(train_step, loss, acc))
-                #writer.add_scalars('data/group', {'train_loss':loss, 'train_acc':acc}, train_step/100)
+                writer.add_scalars('data/group', {'train_loss':loss, 'train_acc':acc}, train_step/100)
             if train_step % testStep == 0:
                 acc, loss = test(model, test_loader, ce_loss, use_cuda)
                 print('[Test ]set: Step: {}, Loss: {:.6f}, Accuracy: {:.6f}\n'.format(train_step, loss, acc))
-                #writer.add_scalars('data/group', {'test_loss':loss, 'test_acc':acc}, train_step/100)
+                writer.add_scalars('data/group', {'test_loss':loss, 'test_acc':acc}, train_step/100)
 
-    #writer.export_scalars_to_json("./all_scalars.json")
-    #writer.close()
+    writer.export_scalars_to_json("/output/all_scalars.json")
+    writer.close()
 
 if __name__ == '__main__':
     main()
+
 
 
 
