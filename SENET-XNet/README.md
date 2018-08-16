@@ -1,27 +1,33 @@
 # Result
 ### image
-- tensorBoard图
 - tensorBoardX 18层网络 batchSize = 100
     - 大图
-    ![](SENet-batch100-18-tensorboardX-big.png)
-    - 小图
-    ![](SENet-batch100-18-tensorboardX-small.png)
 
-- log图
-- 18层网络
+![](./image/SENet-batch100-18-tensorboardX-big.png)
+    - 小图
+
+![](./image/SENet-batch100-18-tensorboardX-small.png)
+
+
+- 18层网络 log
     - batchSize = 64 最终结果
+
 ![](./image/SENet-batch64-last-18.png)
     - batchSize = 64 最大结果
+
 ![](./image/SENet-batch64-max-18.png)
 
     - batchSize = 128 最终结果
+
 ![](./image/SENet-batch128-last-18.png)
 
 - 34层网络
     - batchSize = 64 最终结果
+
 ![](./image/SENet-batch64-last-34.png)
     - batchSize = 128 最终结果
-![](./image/SENet-batch128-last-34.png)
+
+![](./image/SENet-bach128-last-34.png)
 
 
 
